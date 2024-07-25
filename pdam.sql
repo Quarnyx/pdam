@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 22, 2024 at 07:14 AM
+-- Generation Time: Jul 25, 2024 at 09:47 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -34,18 +34,61 @@ CREATE TABLE `kas` (
   `jenis` varchar(25) DEFAULT NULL,
   `debit` decimal(10,2) DEFAULT 0.00,
   `kredit` decimal(10,2) DEFAULT 0.00,
-  `kode_user` int(5) DEFAULT NULL
+  `kode_user` int(5) DEFAULT NULL,
+  `kode_rekening` int(11) DEFAULT NULL,
+  `kode_kategori` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `kas`
 --
 
-INSERT INTO `kas` (`kode_kas`, `tanggal`, `keterangan`, `jenis`, `debit`, `kredit`, `kode_user`) VALUES
-('K001', '2024-07-01', 'Setor Kas Awal', 'Pemasukan', 50000000.00, 0.00, 4),
-('K002', '2024-07-11', 'Setor Bank', 'Pemasukan', 6000000.00, 0.00, 4),
-('K003', '2024-07-22', 'Baru Masuk', 'Pemasukan', 5000.00, 0.00, 4),
-('K004', '2024-07-22', 'Bayar Perawatan', 'Pengeluaran', 0.00, 10000000.00, 4);
+INSERT INTO `kas` (`kode_kas`, `tanggal`, `keterangan`, `jenis`, `debit`, `kredit`, `kode_user`, `kode_rekening`, `kode_kategori`) VALUES
+('K001', '2024-01-01', 'Setor Kas Awal', 'Pemasukan', 50000000.00, 0.00, 1, 1, 4),
+('K002', '2024-07-25', 'Sumbangan', 'Pemasukan', 10000000.00, 0.00, 1, 3, 4),
+('K003', '2024-07-25', 'Service', 'Pengeluaran', 0.00, 15000000.00, 1, 3, 3),
+('K004', '2024-07-01', 'Setor', 'Pemasukan', 10000000.00, 0.00, 1, 3, 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kategori`
+--
+
+CREATE TABLE `kategori` (
+  `kode_kategori` int(11) NOT NULL,
+  `nama_kategori` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `kategori`
+--
+
+INSERT INTO `kategori` (`kode_kategori`, `nama_kategori`) VALUES
+(1, 'Biaya'),
+(3, 'Perawatan'),
+(4, 'Setor');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rekening`
+--
+
+CREATE TABLE `rekening` (
+  `kode_rekening` int(11) NOT NULL,
+  `nama_bank` varchar(255) DEFAULT NULL,
+  `nama_rekening` varchar(255) DEFAULT NULL,
+  `nomor_rekening` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `rekening`
+--
+
+INSERT INTO `rekening` (`kode_rekening`, `nama_bank`, `nama_rekening`, `nomor_rekening`) VALUES
+(1, 'BCA', 'Orang', '909230902191'),
+(3, 'Kas di Tangan', 'PDAM', '0000');
 
 -- --------------------------------------------------------
 
@@ -82,7 +125,21 @@ INSERT INTO `user` (`kode_user`, `nama_user`, `alamat_user`, `password`, `telpon
 --
 ALTER TABLE `kas`
   ADD PRIMARY KEY (`kode_kas`),
-  ADD KEY `kode_user` (`kode_user`);
+  ADD KEY `kode_user` (`kode_user`),
+  ADD KEY `kode_rekening` (`kode_rekening`),
+  ADD KEY `kode_kategori` (`kode_kategori`);
+
+--
+-- Indexes for table `kategori`
+--
+ALTER TABLE `kategori`
+  ADD PRIMARY KEY (`kode_kategori`);
+
+--
+-- Indexes for table `rekening`
+--
+ALTER TABLE `rekening`
+  ADD PRIMARY KEY (`kode_rekening`);
 
 --
 -- Indexes for table `user`
@@ -93,6 +150,18 @@ ALTER TABLE `user`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `kategori`
+--
+ALTER TABLE `kategori`
+  MODIFY `kode_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `rekening`
+--
+ALTER TABLE `rekening`
+  MODIFY `kode_rekening` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -108,7 +177,9 @@ ALTER TABLE `user`
 -- Constraints for table `kas`
 --
 ALTER TABLE `kas`
-  ADD CONSTRAINT `kas_ibfk_1` FOREIGN KEY (`kode_user`) REFERENCES `user` (`kode_user`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `kas_ibfk_1` FOREIGN KEY (`kode_user`) REFERENCES `user` (`kode_user`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `kas_ibfk_2` FOREIGN KEY (`kode_rekening`) REFERENCES `rekening` (`kode_rekening`),
+  ADD CONSTRAINT `kas_ibfk_3` FOREIGN KEY (`kode_kategori`) REFERENCES `kategori` (`kode_kategori`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
