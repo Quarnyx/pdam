@@ -203,4 +203,42 @@ switch ($_GET['act'] ?? '') {
             echo $conn->error;
         }
         break;
+
+    case 'tambah-kategori':
+        $nama_kategori = $_POST['nama_kategori'];
+        $sql = "INSERT INTO kategori (nama_kategori) VALUES ('$nama_kategori')";
+        $result = $conn->query($sql);
+        if ($result) {
+            http_response_code(200);
+        } else {
+            http_response_code(500);
+            echo $conn->error;
+        }
+        break;
+
+    case 'edit-kategori':
+        $id = $_POST['kode_kategori'];
+        $nama_kategori = $_POST['nama_kategori'];
+        $sql = "UPDATE kategori SET nama_kategori = '$nama_kategori' WHERE kode_kategori = '$id'";
+        $result = $conn->query($sql);
+        if ($result) {
+            http_response_code(200);
+        } else {
+            http_response_code(500);
+            echo $conn->error;
+        }
+        break;
+
+    case 'hapus-kategori':
+        $id = $_POST['id'];
+        $sql = "DELETE FROM kategori WHERE kode_kategori = '$id'";
+        $result = $conn->query($sql);
+        if ($result) {
+            http_response_code(200);
+        } else {
+            http_response_code(500);
+            echo $conn->error;
+        }
+        break;
+
 }

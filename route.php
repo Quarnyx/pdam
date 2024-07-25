@@ -23,6 +23,9 @@ switch ($_GET['page'] ?? '') {
     case 'rekening':
         include 'page/rekening/index.php';
         break;
+    case 'kategori':
+        include 'page/kategori/index.php';
+        break;
     default:
         include 'page/404.php';
         break;
