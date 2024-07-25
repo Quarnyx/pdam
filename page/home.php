@@ -528,12 +528,15 @@ ORDER BY month;
 $sqlk = "SELECT
 	kas.kode_kategori,
 	kategori.nama_kategori,
+    kas.tanggal,
 	SUM( kas.debit ) + SUM( kas.kredit ) AS subtotal 
 FROM
 	kas
 	INNER JOIN kategori ON kas.kode_kategori = kategori.kode_kategori 
+    WHERE MONTH(kas.tanggal) = MONTH(CURRENT_DATE()) AND YEAR(kas.tanggal) = YEAR(CURRENT_DATE())
 GROUP BY
-	nama_kategori";
+	nama_kategori
+    ";
 
 $resultk = $conn->query($sqlk);
 $kategori = array();
