@@ -164,4 +164,43 @@ switch ($_GET['act'] ?? '') {
             echo $conn->error;
         }
         break;
+    // input rekening
+    case 'tambah-rekening':
+        $nama_bank = $_POST['nama_bank'];
+        $nama_rekening = $_POST['nama_rekening'];
+        $nomor_rekening = $_POST['nomor_rekening'];
+        $sql = "INSERT INTO rekening (nama_bank, nama_rekening, nomor_rekening) VALUES ('$nama_bank', '$nama_rekening', '$nomor_rekening')";
+        $result = $conn->query($sql);
+        if ($result) {
+            http_response_code(200);
+        } else {
+            http_response_code(500);
+            echo $conn->error;
+        }
+        break;
+    case 'edit-rekening':
+        $id = $_POST['kode_rekening'];
+        $nama_bank = $_POST['nama_bank'];
+        $nama_rekening = $_POST['nama_rekening'];
+        $nomor_rekening = $_POST['nomor_rekening'];
+        $sql = "UPDATE rekening SET nama_bank = '$nama_bank', nama_rekening = '$nama_rekening', nomor_rekening = '$nomor_rekening' WHERE kode_rekening = '$id'";
+        $result = $conn->query($sql);
+        if ($result) {
+            http_response_code(200);
+        } else {
+            http_response_code(500);
+            echo $conn->error;
+        }
+        break;
+    case 'hapus-rekening':
+        $id = $_POST['id'];
+        $sql = "DELETE FROM rekening WHERE kode_rekening = '$id'";
+        $result = $conn->query($sql);
+        if ($result) {
+            http_response_code(200);
+        } else {
+            http_response_code(500);
+            echo $conn->error;
+        }
+        break;
 }

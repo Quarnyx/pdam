@@ -66,6 +66,20 @@
                     </li>
 
                     <li>
+                        <a href="?page=rekening" class="tp-link">
+                            <i data-feather="dollar-sign"></i>
+                            <span> Rekening </span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="?page=kategori" class="tp-link">
+                            <i data-feather="grid"></i>
+                            <span> Kategori Transaksi </span>
+                        </a>
+                    </li>
+
+                    <li>
                         <a href="?page=pengguna" class="tp-link">
                             <i data-feather="users"></i>
                             <span> Data Pengguna </span>
