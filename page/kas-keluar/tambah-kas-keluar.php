@@ -30,6 +30,21 @@
                 <label for="simpleinput" class="form-label">Tanggal</label>
                 <input type="date" id="simpleinput" class="form-control" name="tanggal">
             </div>
+            <div class="mb-3">
+                <label for="simpleinput" class="form-label">Rekening Transaksi</label>
+                <select class="form-select" name="kode_rekening">
+                    <?php
+                    $query = mysqli_query($conn, "SELECT * FROM rekening");
+                    while ($data = mysqli_fetch_array($query)) {
+                        ?>
+                        <option value="<?php echo $data['kode_rekening'] ?>">
+                            <?php echo $data['nama_bank'] ?> | <?php echo $data['nama_rekening'] ?>
+                        </option>
+                        <?php
+                    }
+                    ?>
+                </select>
+            </div>
 
         </div>
 
@@ -41,6 +56,21 @@
             <div class="mb-3">
                 <label for="simpleinput" class="form-label">Jumlah</label>
                 <input type="number" id="simpleinput" class="form-control" name="jumlah">
+            </div>
+            <div class="mb-3">
+                <label for="simpleinput" class="form-label">Kategori</label>
+                <select class="form-select" name="kode_kategori">
+                    <?php
+                    $query = mysqli_query($conn, "SELECT * FROM kategori");
+                    while ($data = mysqli_fetch_array($query)) {
+                        ?>
+                        <option value="<?php echo $data['kode_kategori'] ?>">
+                            <?php echo $data['nama_kategori'] ?>
+                        </option>
+                        <?php
+                    }
+                    ?>
+                </select>
             </div>
         </div>
     </div>

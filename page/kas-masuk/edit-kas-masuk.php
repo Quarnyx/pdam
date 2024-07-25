@@ -26,6 +26,22 @@
                 <input type="date" id="simpleinput" class="form-control" name="tanggal"
                     value="<?php echo $data['tanggal'] ?>">
             </div>
+            <div class="mb-3">
+                <label for="simpleinput" class="form-label">Rekening Transaksi</label>
+                <select class="form-select" name="kode_rekening">
+                    <?php
+                    $query = mysqli_query($conn, "SELECT * FROM rekening");
+                    while ($datab = mysqli_fetch_array($query)) {
+                        ?>
+                        <option value="<?php echo $datab['kode_rekening'] ?>" <?php if ($datab['kode_rekening'] == $data['kode_rekening'])
+                               echo 'selected' ?>>
+                            <?php echo $datab['nama_bank'] ?> | <?php echo $datab['nama_rekening'] ?>
+                        </option>
+                        <?php
+                    }
+                    ?>
+                </select>
+            </div>
 
         </div>
 
@@ -38,6 +54,22 @@
                 <label for="simpleinput" class="form-label">Jumlah</label>
                 <input type="number" id="simpleinput" class="form-control" name="jumlah"
                     value="<?php echo $data['debit'] ?>">
+            </div>
+            <div class="mb-3">
+                <label for="simpleinput" class="form-label">Kategori</label>
+                <select class="form-select" name="kode_kategori">
+                    <?php
+                    $query = mysqli_query($conn, "SELECT * FROM kategori");
+                    while ($datac = mysqli_fetch_array($query)) {
+                        ?>
+                        <option value="<?php echo $datac['kode_kategori'] ?>" <?php if ($datac['kode_kategori'] == $data['kode_kategori'])
+                               echo 'selected' ?>>
+                            <?php echo $datac['nama_kategori'] ?>
+                        </option>
+                        <?php
+                    }
+                    ?>
+                </select>
             </div>
         </div>
     </div>
