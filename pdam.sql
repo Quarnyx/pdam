@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 25, 2024 at 09:47 AM
+-- Generation Time: Jul 30, 2024 at 03:27 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -31,7 +31,6 @@ CREATE TABLE `kas` (
   `kode_kas` varchar(10) NOT NULL,
   `tanggal` date DEFAULT NULL,
   `keterangan` varchar(100) DEFAULT NULL,
-  `jenis` varchar(25) DEFAULT NULL,
   `debit` decimal(10,2) DEFAULT 0.00,
   `kredit` decimal(10,2) DEFAULT 0.00,
   `kode_user` int(5) DEFAULT NULL,
@@ -43,11 +42,13 @@ CREATE TABLE `kas` (
 -- Dumping data for table `kas`
 --
 
-INSERT INTO `kas` (`kode_kas`, `tanggal`, `keterangan`, `jenis`, `debit`, `kredit`, `kode_user`, `kode_rekening`, `kode_kategori`) VALUES
-('K001', '2024-01-01', 'Setor Kas Awal', 'Pemasukan', 50000000.00, 0.00, 1, 1, 4),
-('K002', '2024-07-25', 'Sumbangan', 'Pemasukan', 10000000.00, 0.00, 1, 3, 4),
-('K003', '2024-07-25', 'Service', 'Pengeluaran', 0.00, 15000000.00, 1, 3, 3),
-('K004', '2024-07-01', 'Setor', 'Pemasukan', 10000000.00, 0.00, 1, 3, 4);
+INSERT INTO `kas` (`kode_kas`, `tanggal`, `keterangan`, `debit`, `kredit`, `kode_user`, `kode_rekening`, `kode_kategori`) VALUES
+('K001', '2024-01-01', 'Setor Kas Awal', 50000000.00, 0.00, 1, 1, 4),
+('K002', '2024-07-25', 'Sumbangan', 10000000.00, 0.00, 1, 3, 4),
+('K003', '2024-07-25', 'Service', 0.00, 15000000.00, 1, 3, 3),
+('K004', '2024-07-01', 'Setor', 10000000.00, 0.00, 1, 3, 4),
+('K005', '2024-07-30', 'Tulisana', 2000.00, 0.00, 1, 1, 4),
+('K006', '2024-07-30', 'Bayar Listrik', 0.00, 5000.00, 1, 3, 1);
 
 -- --------------------------------------------------------
 
