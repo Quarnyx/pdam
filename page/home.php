@@ -296,7 +296,12 @@
 
                                         <tr>
                                             <td><?= $row['keterangan'] ?></td>
-                                            <td><?= $row['jenis'] ?></td>
+                                            <td><?php if ($row['debit'] > 0)
+                                                echo 'Pemasukan';
+                                            else
+                                                echo 'Pengeluaran';
+                                            echo ' ' ?>
+                                            </td>
                                             <td>
                                                 <?php
                                                 if ($row['debit'] > 0) {

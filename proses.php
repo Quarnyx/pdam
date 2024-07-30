@@ -81,13 +81,12 @@ switch ($_GET['act'] ?? '') {
     case 'tambah-kas-masuk':
         $kode_kas = $_POST['kode_kas'];
         $keterangan = $_POST['keterangan'];
-        $jenis = $_POST['jenis'];
         $jumlah = $_POST['jumlah'];
         $kode_user = $_POST['id'];
         $tanggal = $_POST['tanggal'];
         $kode_rekening = $_POST['kode_rekening'];
         $kode_kategori = $_POST['kode_kategori'];
-        $sql = "INSERT INTO kas (kode_kas, tanggal, keterangan, jenis, debit, kode_user, kode_rekening, kode_kategori) VALUES ('$kode_kas', '$tanggal', '$keterangan', '$jenis', '$jumlah', '$kode_user', '$kode_rekening', '$kode_kategori')";
+        $sql = "INSERT INTO kas (kode_kas, tanggal, keterangan, debit, kode_user, kode_rekening, kode_kategori) VALUES ('$kode_kas', '$tanggal', '$keterangan', '$jumlah', '$kode_user', '$kode_rekening', '$kode_kategori')";
         $result = $conn->query($sql);
         if ($result) {
             http_response_code(200);
@@ -110,13 +109,12 @@ switch ($_GET['act'] ?? '') {
     case 'edit-kas-masuk':
         $kode_kas = $_POST['kode_kas'];
         $keterangan = $_POST['keterangan'];
-        $jenis = $_POST['jenis'];
         $jumlah = $_POST['jumlah'];
         $kode_user = $_POST['id'];
         $tanggal = $_POST['tanggal'];
         $kode_rekening = $_POST['kode_rekening'];
         $kode_kategori = $_POST['kode_kategori'];
-        $sql = "UPDATE kas SET keterangan = '$keterangan', jenis = '$jenis', debit = '$jumlah', kode_user = '$kode_user', tanggal = '$tanggal', kode_rekening = '$kode_rekening', kode_kategori = '$kode_kategori' WHERE kode_kas = '$kode_kas'";
+        $sql = "UPDATE kas SET keterangan = '$keterangan', debit = '$jumlah', kode_user = '$kode_user', tanggal = '$tanggal', kode_rekening = '$kode_rekening', kode_kategori = '$kode_kategori' WHERE kode_kas = '$kode_kas'";
         $result = $conn->query($sql);
         if ($result) {
             http_response_code(200);
@@ -128,13 +126,12 @@ switch ($_GET['act'] ?? '') {
     case 'tambah-kas-keluar':
         $kode_kas = $_POST['kode_kas'];
         $keterangan = $_POST['keterangan'];
-        $jenis = $_POST['jenis'];
         $jumlah = $_POST['jumlah'];
         $kode_user = $_POST['id'];
         $tanggal = $_POST['tanggal'];
         $kode_rekening = $_POST['kode_rekening'];
         $kode_kategori = $_POST['kode_kategori'];
-        $sql = "INSERT INTO kas (kode_kas, tanggal, keterangan, jenis, kredit, kode_user, kode_rekening, kode_kategori) VALUES ('$kode_kas', '$tanggal', '$keterangan', '$jenis', '$jumlah', '$kode_user', '$kode_rekening', '$kode_kategori')";
+        $sql = "INSERT INTO kas (kode_kas, tanggal, keterangan, kredit, kode_user, kode_rekening, kode_kategori) VALUES ('$kode_kas', '$tanggal', '$keterangan', '$jumlah', '$kode_user', '$kode_rekening', '$kode_kategori')";
         $result = $conn->query($sql);
         if ($result) {
             http_response_code(200);
@@ -157,13 +154,12 @@ switch ($_GET['act'] ?? '') {
     case 'edit-kas-keluar':
         $kode_kas = $_POST['kode_kas'];
         $keterangan = $_POST['keterangan'];
-        $jenis = $_POST['jenis'];
         $jumlah = $_POST['jumlah'];
         $kode_user = $_POST['id'];
         $tanggal = $_POST['tanggal'];
         $kode_rekening = $_POST['kode_rekening'];
         $kode_kategori = $_POST['kode_kategori'];
-        $sql = "UPDATE kas SET keterangan = '$keterangan', jenis = '$jenis', kredit = '$jumlah', kode_user = '$kode_user', tanggal = '$tanggal', kode_rekening = '$kode_rekening', kode_kategori = '$kode_kategori' WHERE kode_kas = '$kode_kas'";
+        $sql = "UPDATE kas SET keterangan = '$keterangan', kredit = '$jumlah', kode_user = '$kode_user', tanggal = '$tanggal', kode_rekening = '$kode_rekening', kode_kategori = '$kode_kategori' WHERE kode_kas = '$kode_kas'";
         $result = $conn->query($sql);
         if ($result) {
             http_response_code(200);

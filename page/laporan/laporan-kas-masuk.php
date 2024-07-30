@@ -96,7 +96,7 @@
                             if (!empty($_GET["dari_tanggal"]) && !empty($_GET["sampai_tanggal"]))
                                 $kondisi = "AND date(tanggal) between '" . $_GET['dari_tanggal'] . "' and '" . $_GET['sampai_tanggal'] . "'";
 
-                            $sql = "SELECT * FROM kas WHERE jenis='pemasukan' $kondisi ORDER BY tanggal asc";
+                            $sql = "SELECT * FROM kas WHERE debit > 0 $kondisi ORDER BY tanggal asc";
                             $hasil = mysqli_query($conn, $sql);
                             $no = 0;
                             $status = '';

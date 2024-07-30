@@ -16,14 +16,13 @@
 kas.kode_kas,
 kas.tanggal,
 kas.keterangan,
-kas.jenis,
 kas.debit,
 kas.kredit,
 kas.kode_user,
 `user`.nama_user
 FROM
 `user`
-INNER JOIN kas ON kas.kode_user = `user`.kode_user WHERE jenis='pemasukan' ORDER BY kode_kas DESC");
+INNER JOIN kas ON kas.kode_user = `user`.kode_user WHERE debit > 0 ORDER BY kode_kas DESC");
         while ($data = mysqli_fetch_array($query)) {
             ?>
             <tr>

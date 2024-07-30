@@ -30,30 +30,12 @@
                 <label for="simpleinput" class="form-label">Tanggal</label>
                 <input type="date" id="simpleinput" class="form-control" name="tanggal">
             </div>
-            <div class="mb-3">
-                <label for="simpleinput" class="form-label">Rekening Transaksi</label>
-                <select class="form-select" name="kode_rekening">
-                    <?php
-                    $query = mysqli_query($conn, "SELECT * FROM rekening");
-                    while ($data = mysqli_fetch_array($query)) {
-                        ?>
-                        <option value="<?php echo $data['kode_rekening'] ?>">
-                            <?php echo $data['nama_bank'] ?> | <?php echo $data['nama_rekening'] ?>
-                        </option>
-                        <?php
-                    }
-                    ?>
-                </select>
-            </div>
+
 
 
         </div>
 
         <div class="col-lg-6">
-            <div class="mb-3">
-                <label for="simpleinput" class="form-label">Jenis</label>
-                <input type="text" id="simpleinput" class="form-control" name="jenis" value="Pemasukan" readonly>
-            </div>
             <div class="mb-3">
                 <label for="simpleinput" class="form-label">Jumlah</label>
                 <input type="number" id="simpleinput" class="form-control" name="jumlah">
@@ -67,6 +49,21 @@
                         ?>
                         <option value="<?php echo $data['kode_kategori'] ?>">
                             <?php echo $data['nama_kategori'] ?>
+                        </option>
+                        <?php
+                    }
+                    ?>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="simpleinput" class="form-label">Rekening Transaksi</label>
+                <select class="form-select" name="kode_rekening">
+                    <?php
+                    $query = mysqli_query($conn, "SELECT * FROM rekening");
+                    while ($data = mysqli_fetch_array($query)) {
+                        ?>
+                        <option value="<?php echo $data['kode_rekening'] ?>">
+                            <?php echo $data['nama_bank'] ?> | <?php echo $data['nama_rekening'] ?>
                         </option>
                         <?php
                     }
