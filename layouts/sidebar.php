@@ -68,7 +68,7 @@
                     <li>
                         <a href="?page=rekening" class="tp-link">
                             <i data-feather="dollar-sign"></i>
-                            <span> Rekening </span>
+                            <span> Akun </span>
                         </a>
                     </li>
 

@@ -16,7 +16,7 @@
 
                     <div class="card text-bg-primary">
                         <?php
-                        require_once ('config.php');
+                        require_once('config.php');
                         $sql = "SELECT SUM(debit) - SUM(kredit) AS total FROM kas";
                         $result = $conn->query($sql);
                         $row = $result->fetch_assoc();
@@ -27,7 +27,12 @@
                         </div>
                         <div class="card-body">
                             <div class="fs-22 mb-0 me-2 fw-semibold text-white">Rp
-                                <?php echo number_format($total, 0, ',', '.'); ?>
+                                <?php
+                                if (!empty($total)) {
+                                    echo number_format($total, 0, ',', '.');
+                                } else {
+                                    echo "0";
+                                } ?>
                             </div>
                         </div>
                     </div>
@@ -46,7 +51,12 @@
                         </div>
                         <div class="card-body">
                             <div class="fs-22 mb-0 me-2 fw-semibold text-white">
-                                Rp <?php echo number_format($totalpemasukan, 0, ',', '.'); ?>
+                                Rp <?php
+                                if (!empty($totalpemasukan)) {
+                                    echo number_format($totalpemasukan, 0, ',', '.');
+                                } else {
+                                    echo "0";
+                                } ?>
                             </div>
                         </div>
                     </div>
@@ -66,7 +76,12 @@
                         </div>
                         <div class="card-body">
                             <div class="fs-22 mb-0 me-2 fw-semibold text-white">Rp
-                                <?php echo number_format($totalpengeluaran, 0, ',', '.'); ?>
+                                <?php
+                                if (!empty($totalpengeluaran)) {
+                                    echo number_format($totalpengeluaran, 0, ',', '.');
+                                } else {
+                                    echo "0";
+                                } ?>
                             </div>
                         </div>
                     </div>
@@ -110,7 +125,12 @@
                             </div>
                             <p class="d-flex align-content-center border-top mb-0 pt-3 mt-3">
                                 <span class="fs-20 mb-0 me-2 fw-semibold text-primary">
-                                    Rp <?php echo number_format($totalpemasukan, 0, ',', '.'); ?>
+                                    Rp <?php
+                                    if (!empty($totalpemasukan)) {
+                                        echo number_format($totalpemasukan, 0, ',', '.');
+                                    } else {
+                                        echo "0";
+                                    } ?>
                                 </span>
                             </p>
 
@@ -144,7 +164,12 @@
 
                             <p class="d-flex align-content-center border-top mb-0 pt-3 mt-3">
                                 <span class="fs-20 mb-0 me-2 fw-semibold text-danger">
-                                    Rp <?php echo number_format($totalpengeluaran, 0, ',', '.'); ?>
+                                    Rp <?php
+                                    if (!empty($totalpengeluaran)) {
+                                        echo number_format($totalpengeluaran, 0, ',', '.');
+                                    } else {
+                                        echo "0";
+                                    } ?>
                                 </span>
                             </p>
 
@@ -180,7 +205,12 @@
 
                             <p class="d-flex align-content-center border-top mb-0 pt-3 mt-3">
                                 <span class="fs-20 mb-0 me-2 fw-semibold text-success">
-                                    Rp <?php echo number_format($totalpemasukan, 0, ',', '.'); ?>
+                                    Rp <?php
+                                    if (!empty($totalpemasukan)) {
+                                        echo number_format($totalpemasukan, 0, ',', '.');
+                                    } else {
+                                        echo "0";
+                                    } ?>
                                 </span>
                             </p>
 
@@ -214,7 +244,11 @@
 
                             <p class="d-flex align-content-center border-top mb-0 pt-3 mt-3">
                                 <span class="fs-20 mb-0 me-2 fw-semibold text-primary">
-                                    Rp <?php echo number_format($totalpengeluaran, 0, ',', '.'); ?>
+                                    Rp <?php if (!empty($totalpengeluaran)) {
+                                        echo number_format($totalpengeluaran, 0, ',', '.');
+                                    } else {
+                                        echo "0";
+                                    } ?>
                                 </span>
                             </p>
 
@@ -329,7 +363,7 @@
                         <div class="border border-dark rounded-2 me-2 widget-icons-sections">
                             <i data-feather="tablet" class="widgets-icons"></i>
                         </div>
-                        <h5 class="card-title mb-0">Saldo Rekening</h5>
+                        <h5 class="card-title mb-0">Saldo Akun</h5>
                     </div>
                 </div>
 
@@ -340,13 +374,13 @@
                                 <thead>
                                     <tr>
                                         <th>Bank</th>
-                                        <th>Nama Rekening</th>
+                                        <th>Nama Akun</th>
                                         <th>Jumlah</th>
                                     </tr>
                                 </thead>
                                 <?php
                                 $sql = "SELECT
-	rekening.nama_bank, 
+	rekening.nama_akun, 
 	rekening.nama_rekening, 
 	SUM(kas.debit) - SUM(kas.kredit) AS total
 FROM
@@ -362,7 +396,7 @@ FROM
                                         ?>
 
                                         <tr>
-                                            <td><?= $row['nama_bank'] ?></td>
+                                            <td><?= $row['nama_akun'] ?></td>
                                             <td><?= $row['nama_rekening'] ?></td>
                                             <td>
                                                 <?php echo "Rp. " . number_format($row['total'], 0, ',', '.') ?>
@@ -385,7 +419,7 @@ FROM
 
 
     <?php
-    require_once ('config.php');
+    require_once('config.php');
     $sql = "SELECT 
     DATE_FORMAT(tanggal, '%Y-%m') AS month,
     SUM(debit) AS income,

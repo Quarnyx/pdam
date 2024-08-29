@@ -1,6 +1,6 @@
 <form id="tambah-kas-masuk" enctype="multipart/form-data">
     <?php
-    require_once ('../../config.php');
+    require_once('../../config.php');
     session_start();
     $kode_kas = $_POST['kode_kas'];
     $sql = "SELECT * FROM kas WHERE kode_kas = '$kode_kas'";
@@ -61,7 +61,7 @@
                         ?>
                         <option value="<?php echo $datab['kode_rekening'] ?>" <?php if ($datab['kode_rekening'] == $data['kode_rekening'])
                                echo 'selected' ?>>
-                            <?php echo $datab['nama_bank'] ?> | <?php echo $datab['nama_rekening'] ?>
+                            <?php echo $datab['nama_akun'] ?> | <?php echo $datab['nama_rekening'] ?>
                         </option>
                         <?php
                     }

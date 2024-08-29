@@ -5,7 +5,7 @@
     ?>
     <input type="hidden" name="id" value="<?php echo $_SESSION['kode_user'] ?>">
     <?php
-    require_once ('../../config.php');
+    require_once('../../config.php');
 
     // generate kode kas
     $query = mysqli_query($conn, "SELECT MAX(kode_kas) AS kode_kas FROM kas");
@@ -63,7 +63,7 @@
                     while ($data = mysqli_fetch_array($query)) {
                         ?>
                         <option value="<?php echo $data['kode_rekening'] ?>">
-                            <?php echo $data['nama_bank'] ?> | <?php echo $data['nama_rekening'] ?>
+                            <?php echo $data['nama_akun'] ?> | <?php echo $data['nama_rekening'] ?>
                         </option>
                         <?php
                     }

@@ -170,10 +170,12 @@ switch ($_GET['act'] ?? '') {
         break;
     // input rekening
     case 'tambah-rekening':
-        $nama_bank = $_POST['nama_bank'];
+        $nama_akun = $_POST['nama_akun'];
         $nama_rekening = $_POST['nama_rekening'];
         $nomor_rekening = $_POST['nomor_rekening'];
-        $sql = "INSERT INTO rekening (nama_bank, nama_rekening, nomor_rekening) VALUES ('$nama_bank', '$nama_rekening', '$nomor_rekening')";
+        $nomor_akun = $_POST['nomor_akun'];
+        $jenis_akun = $_POST['jenis_akun'];
+        $sql = "INSERT INTO rekening (nama_akun, nama_rekening, nomor_rekening, nomor_akun, jenis_akun) VALUES ('$nama_akun', '$nama_rekening', '$nomor_rekening', '$nomor_akun', '$jenis_akun')";
         $result = $conn->query($sql);
         if ($result) {
             http_response_code(200);
@@ -184,10 +186,12 @@ switch ($_GET['act'] ?? '') {
         break;
     case 'edit-rekening':
         $id = $_POST['kode_rekening'];
-        $nama_bank = $_POST['nama_bank'];
+        $nama_akun = $_POST['nama_akun'];
         $nama_rekening = $_POST['nama_rekening'];
         $nomor_rekening = $_POST['nomor_rekening'];
-        $sql = "UPDATE rekening SET nama_bank = '$nama_bank', nama_rekening = '$nama_rekening', nomor_rekening = '$nomor_rekening' WHERE kode_rekening = '$id'";
+        $nomor_akun = $_POST['nomor_akun'];
+        $jenis_akun = $_POST['jenis_akun'];
+        $sql = "UPDATE rekening SET nama_akun = '$nama_akun', nama_rekening = '$nama_rekening', nomor_rekening = '$nomor_rekening', nomor_akun = '$nomor_akun', jenis_akun = '$jenis_akun' WHERE kode_rekening = '$id'";
         $result = $conn->query($sql);
         if ($result) {
             http_response_code(200);

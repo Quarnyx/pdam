@@ -1,5 +1,5 @@
 <?php
-require_once ('../../config.php');
+require_once('../../config.php');
 
 $sql = "SELECT * FROM rekening WHERE kode_rekening = '$_POST[id]'";
 $result = $conn->query($sql);
@@ -11,22 +11,39 @@ $data = $result->fetch_assoc();
     <div class="row">
         <div class="col-lg-6">
             <div class="mb-3">
-                <label for="simpleinput" class="form-label">Nama Bank</label>
-                <input type="text" id="simpleinput" class="form-control" name="nama_bank"
-                    value="<?php echo $data['nama_bank'] ?>">
+                <label for="simpleinput" class="form-label">Nama Akun</label>
+                <input type="text" id="simpleinput" class="form-control" name="nama_akun"
+                    value="<?= $data['nama_akun'] ?>">
             </div>
             <div class="mb-3">
                 <label for="" class="form-label">Nomor Rekening</label>
                 <input type="text" name="nomor_rekening" class="form-control" placeholder=""
-                    value="<?php echo $data['nomor_rekening'] ?>">
+                    value="<?= $data['nomor_rekening'] ?>">
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Kode Akun</label>
+                <input type="text" name="nomor_akun" class="form-control" placeholder=""
+                    value="<?= $data['nomor_akun'] ?>">
             </div>
         </div>
         <div class="col-lg-6">
-
             <div class="mb-3">
-                <label for="" class="form-label">Nama Akun</label>
+                <label for="" class="form-label">Atas Nama</label>
                 <input type="text" name="nama_rekening" class="form-control" placeholder=""
-                    value="<?php echo $data['nama_rekening'] ?>">
+                    value="<?= $data['nama_rekening'] ?>">
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Jenis Akun</label>
+                <select name="jenis_akun" class="form-select">
+                    <option value="">-- Pilih Jenis Akun --</option>
+                    <option value="Aset" <?= $data['jenis_akun'] == 'Aset' ? 'selected' : '' ?>>Aset</option>
+                    <option value="Kewajiban" <?= $data['jenis_akun'] == 'Kewajiban' ? 'selected' : '' ?>>Kewajiban
+                    </option>
+                    <option value="Pedapatan" <?= $data['jenis_akun'] == 'Pedapatan' ? 'selected' : '' ?>>Pedapatan
+                    </option>
+                    <option value="Beban" <?= $data['jenis_akun'] == 'Beban' ? 'selected' : '' ?>>Beban</option>
+                    <option value="Modal" <?= $data['jenis_akun'] == 'Modal' ? 'selected' : '' ?>>Modal</option>
+                </select>
             </div>
         </div>
 

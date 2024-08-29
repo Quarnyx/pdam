@@ -2,9 +2,9 @@
     <thead>
         <tr>
             <th>#</th>
-            <th>Bank</th>
-            <th>Rekening</th>
-            <th>Nama</th>
+            <th>Nomor Akun</th>
+            <th>Jenis Akun</th>
+            <th>Nama Akun</th>
             <th>Aksi</th>
         </tr>
     </thead>
@@ -12,15 +12,24 @@
         <?php
         include "../../config.php";
         $no = 0;
-        $query = mysqli_query($conn, "SELECT * FROM rekening");
+        $query = mysqli_query($conn, "SELECT * FROM rekening ORDER BY nomor_akun ASC");
         while ($data = mysqli_fetch_array($query)) {
             $no++;
             ?>
             <tr>
                 <td><?= $no ?></td>
-                <td><?= $data['nama_bank'] ?></td>
-                <td><?= $data['nomor_rekening'] ?></td>
-                <td><?= $data['nama_rekening'] ?></td>
+                <td><?= $data['nomor_akun'] ?></td>
+                <td><?= $data['jenis_akun'] ?></td>
+                <td>
+                    <?php
+                    echo $data['nama_akun'];
+                    if (!empty($data['nomor_rekening'])) {
+                        echo '<br>';
+                        echo $data['nomor_rekening'];
+                    }
+
+                    ?>
+                </td>
                 <td>
                     <button data-id="<?= $data['kode_rekening'] ?>" data-name="<?= $data['nama_rekening'] ?>" id="edit"
                         type="button" class="btn btn-primary">Edit</button>
